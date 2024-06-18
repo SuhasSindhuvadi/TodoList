@@ -9,27 +9,27 @@ function Todolist() {
         setNewTask(event.target.value)
     }
     const addTask = () => {
-        if(newTask.trim()!==''){
-            setTasks([...tasks,newTask])
+        if (newTask.trim() !== '') {
+            setTasks([...tasks, newTask])
             setNewTask("")
         }
     }
     const deleteTask = (index) => {
-        const updatedTask=tasks.filter((_,i)=>i!==index)
+        const updatedTask = tasks.filter((_, i) => i !== index)
         setTasks(updatedTask)
     }
 
     const moveTaskUp = (index) => {
-        if(index>0){
-            const updatedTasks=[...tasks];
-            [updatedTasks[index],updatedTasks[index-1]]=[updatedTasks[index-1],updatedTasks[index]];
+        if (index > 0) {
+            const updatedTasks = [...tasks];//deep copy 
+            [updatedTasks[index], updatedTasks[index - 1]] = [updatedTasks[index - 1], updatedTasks[index]];
             setTasks(updatedTasks)
         }
     }
     const moveTaskDown = (index) => {
-        if(index<tasks.length-1){
-            const updatedTasks=[...tasks];
-            [updatedTasks[index],updatedTasks[index+1]]=[updatedTasks[index+1],updatedTasks[index]];
+        if (index < tasks.length - 1) {
+            const updatedTasks = [...tasks];
+            [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]];
             setTasks(updatedTasks)
         }
     }
@@ -42,6 +42,7 @@ function Todolist() {
                     placeholder='Enter Task ...'
                     value={newTask}
                     onChange={handleInputChange} />
+
                 <button onClick={addTask} className='add-btn'>Add</button>
             </div>
             <ol className='container'>
